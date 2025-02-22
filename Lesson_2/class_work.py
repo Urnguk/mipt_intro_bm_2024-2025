@@ -62,8 +62,76 @@ def heap_sort(A):
         A[len(A) - i - 1] = heap_pop(B)
 
 
-A = [2, 7, -2, 8, 0, 4, 13]
-heap_sort(A)
-print(*A)
+# A = [2, 7, -2, 8, 0, 4, 13]
+# heap_sort(A)
+# print(*A)
+
+
+class Node:
+    def __init__(self, value, parent=None, left=None, right=None):
+        self.v = value
+        self.p = parent
+        self.l = left
+        self.r = right
+
+
+class Bin_tree:
+    def __init__(self, value):
+        self.root = Node(value)
+
+
+    @classmethod
+    def alternative_init(cls, arr):
+        A = Bin_tree(arr[0])
+        for i in range(1, len(arr)):
+            A.add(arr[i])
+        return A
+
+    def add(self, value):
+        curr_node = self.root
+        if value > curr_node.v:
+            next_node = curr_node.r
+        else:
+            next_node = curr_node.l
+        while next_node is not None:
+            curr_node = next_node
+            if value > curr_node.v:
+                next_node = curr_node.r
+            else:
+                next_node = curr_node.l
+        if value > curr_node.v:
+            curr_node.r = Node(value, curr_node)
+        else:
+            curr_node.l = Node(value, curr_node)
+
+    def search(self, value):
+        curr_node = self.root
+        while curr_node is not None:
+            if curr_node.v == value:
+                return True
+            if value > curr_node.v:
+                curr_node = curr_node.r
+            else:
+                curr_node = curr_node.l
+        return False
+
+    def _print(self, curr_node):
+        if curr_node is None:
+            return ""
+        return f"{self._print(curr_node.l)} {str(curr_node.v)} {self._print(curr_node.r)}"
+
+    def __str__(self):
+        return self._print(self.root)
+
+
+x = Bin_tree(7)
+x.add(5)
+x.add(6)
+x.add(1)
+x.add(9)
+print(x)
+y = Bin_tree.alternative_init([3, 4, 7])
+print(y)
+
 
 
