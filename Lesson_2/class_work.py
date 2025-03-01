@@ -79,13 +79,12 @@ class Bin_tree:
     def __init__(self, value):
         self.root = Node(value)
 
-
-    @classmethod
-    def alternative_init(cls, arr):
-        A = Bin_tree(arr[0])
-        for i in range(1, len(arr)):
-            A.add(arr[i])
-        return A
+    # @classmethod
+    # def alternative_init(cls, arr):
+    #     A = Bin_tree(arr[0])
+    #     for i in range(1, len(arr)):
+    #         A.add(arr[i])
+    #     return A
 
     def add(self, value):
         curr_node = self.root
