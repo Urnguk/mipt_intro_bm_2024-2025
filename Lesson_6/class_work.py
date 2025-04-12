@@ -27,9 +27,7 @@ def Kraskal(N, edge_list):
             groups_cnt -= 1
             el_tag = groups[v2]
             new_tag = groups[v1]
-            for j in range(len(groups)):
-                if groups[j] == el_tag:
-                    groups[j] = new_tag
+            groups = [x if x != el_tag else new_tag for x in groups]
         if groups_cnt == 1:
             break
     return res
