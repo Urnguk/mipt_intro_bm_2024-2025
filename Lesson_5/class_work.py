@@ -1,10 +1,11 @@
 def read_adj_list():
-    N, M = [int(x) for x in input().split()]
-    res = [[] for i in range(N)]
-    for i in range(M):
+    n, m, s, f = [int(x) for x in input().split()]
+    res = [[] for i in range(n)]
+    for i in range(m):
         x, y, w = [int(x) for x in input().split()]
         res[x].append((y, w))
-        # res[y].append((x, w))
+        res[y].append((x, w))
+    return res, s, f
 
 
 def Dijkstra(adj_list, start_node):
@@ -52,5 +53,12 @@ def FloydWarshall(adj_matrix):
             for j in range(n):
                 adj_matrix[i][j] = min(adj_matrix[i][k] + adj_matrix[k][j], adj_matrix[i][j])
     return adj_matrix
+
+
+adj_list, s, f = read_adj_list()
+print(Dijkstra(adj_list, s)[f])
+
+
+
                 
     
