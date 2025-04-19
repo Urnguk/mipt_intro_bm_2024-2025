@@ -61,8 +61,8 @@ def Grandi(n, k, cache):
 def Multi_Grandi(games, k, cache=None):
     if cache is None:
         cache = dict()
-    res = Grandi(games[0], k, cache)
-    for i in range(1, len(games)):
+    res = 0
+    for i in range(len(games)):
         res ^= Grandi(games[i], k, cache)
     return res
 
